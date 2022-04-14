@@ -2,11 +2,13 @@ import bcryptjs from "bcryptjs";
 import express from "express";
 import jwt from 'jsonwebtoken';
 import { ConnectDB } from "./db.js";
+import { Authorization } from "./middleware/authorization.js";
+import { CollectionModel } from "./models/collection.js";
 import { SessionModel } from "./models/session.js";
 import { UserModel } from "./models/user.js";
 
 const PORT = 3000;
-const JWT_SECRET = "skduncfh847gf83w47fhw8cw994";
+export const JWT_SECRET = "skduncfh847gf83w47fhw8cw994";
 
 ConnectDB();
 const server = express();
@@ -110,6 +112,65 @@ server.post('/signin', async (req, res) => {
     catch(err)
     {
         res.status(401).send(err);
+    }
+})
+
+server.get('/collections', Authorization, async (req, res) => {
+
+    try
+    {
+        const userId = req.userId;
+
+        // If token is valid, get user based on decoded token data
+        const user = await UserModel.findById({ _id: userId }).populate('collections').exec();
+
+        // Check if user exists, if not send bad request
+        if(!user)
+        {
+            throw new Error("Bad Request")
+        }
+
+        res.status(200).send(user.collections);
+    }
+    catch(err)
+    {
+        res.status(500).send("Internal Server Error!");
+    }
+})
+
+server.post('/create/collection', Authorization, async (req, res) => {
+    try
+    {
+        const userId = req.userId;
+
+        // Create a collection for the current userId
+        let { name } = req.body;
+        const collection = await new CollectionModel({ name, user: userId }).save();
+
+        if(!collection)
+        {
+            throw new Error("Erro saving");
+        }
+
+        // If token is valid, get user based on decoded token data
+        const user = await UserModel.findById({ _id: userId });
+
+        // Check if user exists, if not send bad request
+        if(!user)
+        {
+            throw new Error("Erro saving");
+        }
+
+        // if collection created successfully, assign collection id to user collections field
+        user.collections.push(collection._id);
+        await user.save();
+
+        res.status(201).send(collection);
+
+    }
+    catch(err)
+    {
+        res.status(500).send(err);
     }
 })
 

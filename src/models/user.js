@@ -22,10 +22,12 @@ const UserSchema = new mongoose.Schema({
         type: String,
         min: 8
     },
-    collections: {
-        ref: 'Collection',
-        type: mongoose.Schema.Types.ObjectId
-    },
+    collections: [
+        {
+            ref: 'Collection',
+            type: mongoose.Schema.Types.ObjectId
+        }
+    ],
 });
 
 
