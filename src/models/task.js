@@ -5,13 +5,7 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true,
         min: 1,
-        max: 100
-    },
-    description: {
-        type: String,
-        required: true,
-        min: 1,
-        max: 500
+        max: 1000
     },
     completed: Boolean,
     collection: {
