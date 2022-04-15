@@ -10,10 +10,12 @@ const CollectionSchema = new mongoose.Schema({
         type: String,
         max: 100
     },
-    tasks: {
-        ref: 'Task',
-        type: mongoose.Schema.Types.ObjectId
-    }
+    tasks: [
+        {
+            ref: 'Task',
+            type: mongoose.Schema.Types.ObjectId
+        }
+    ]
 });
 
 export const CollectionModel = mongoose.model('Collection', CollectionSchema);

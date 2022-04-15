@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const taskSchema = new mongoose.Schema({
-    title: {
+    text: {
         type: String,
         required: true,
         min: 1,
         max: 1000
     },
     completed: Boolean,
-    collection: {
+    collectionId: {
         ref: 'Collection',
         type: mongoose.Schema.Types.ObjectId
     }

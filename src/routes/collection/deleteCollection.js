@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { Authorization } from "../../middleware/authorization.js";
 import { CollectionModel } from "../../models/collection.js";
+import { TaskModel } from "../../models/task.js";
 import { UserModel } from "../../models/user.js";
 
 export const DeleteCollectionRoute = Router();
@@ -10,7 +11,6 @@ DeleteCollectionRoute.delete('/delete/collection/:id', Authorization, async (req
     try
     {
         const { id } = req.params;
-        console.log(id);
 
         const collection = await CollectionModel.findById({ _id: id });
 
@@ -19,7 +19,7 @@ DeleteCollectionRoute.delete('/delete/collection/:id', Authorization, async (req
             res.status(404).send("Collection Not Found");
         }
 
-        console.log(collection);
+        await TaskModel.deleteMany({ collectionId: collection._id });
 
         // Get user
         const user = await UserModel.findById({ _id: req.userId });

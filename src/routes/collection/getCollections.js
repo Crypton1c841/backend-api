@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { Authorization } from "../../middleware/authorization.js";
-import { UserModel } from "../../models/user.js";
+import { CollectionModel } from "../../models/collection.js";
 
 export const GetCollectionsRoute = Router();
 
@@ -10,16 +10,15 @@ GetCollectionsRoute.get('/collections', Authorization, async (req, res) => {
     {
         const userId = req.userId;
 
-        // If token is valid, get user based on decoded token data
-        const user = await UserModel.findById({ _id: userId }).populate('collections').exec();
+        const collections = await CollectionModel.find({ user: userId }).select("-tasks");
 
         // Check if user exists, if not send bad request
-        if(!user)
+        if(!collections)
         {
             throw new Error("Bad Request")
         }
 
-        res.status(200).send(user.collections);
+        res.status(200).send(collections);
     }
     catch(err)
     {

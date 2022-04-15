@@ -5,6 +5,10 @@ import { CreateCollectionRoute } from './routes/collection/createCollection.js';
 import { DeleteCollectionRoute } from './routes/collection/deleteCollection.js';
 import { GetCollectionsRoute } from './routes/collection/getCollections.js';
 import { UpdateCollectionRoute } from './routes/collection/updateCollection.js';
+import { CreateTaskRoute } from './routes/task/createTask.js';
+import { DeleteTaskRoute } from './routes/task/deleteTask.js';
+import { GetTasksRoute } from './routes/task/getTasks.js';
+import { UpdateTaskRoute } from './routes/task/updateTask.js';
 
 
 export const ExpressServer = () => {
@@ -19,6 +23,10 @@ export const ExpressServer = () => {
     server.use(GetCollectionsRoute);
     server.use(UpdateCollectionRoute);
     server.use(DeleteCollectionRoute);
+    server.use(CreateTaskRoute);
+    server.use(GetTasksRoute);
+    server.use(UpdateTaskRoute);
+    server.use(DeleteTaskRoute);
 
     return server;
 
