@@ -25,6 +25,6 @@ UpdateCollectionRoute.patch("/update/collection/:id", Authorization, async (req,
     }
     catch(err)
     {
-        res.status(500).send("Internal Server Error!");
+        res.status(500).end("Internal Server Error!");
     }
 })

@@ -37,6 +37,6 @@ CreateCollectionRoute.post('/create/collection', Authorization, async (req, res)
     }
     catch(err)
     {
-        res.status(500).send('Internal Server Error!');
+        res.status(500).end('Internal Server Error!');
     }
 })

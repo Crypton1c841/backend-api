@@ -10,11 +10,11 @@ export const Authorization = async (req, res, next) => {
         const token = req.header("Authorization").replace("Bearer ", "");
 
         // verify if token exists in sessions collection
-        const session = await SessionModel.find({ "token": token });
+        const session = await SessionModel.findOne({ "token": token });
 
         if(!session)
         {
-            req.status(400).send("Bad Request");
+            res.status(401).end("Unauthorized Request");
         }
             
         // Verify token
@@ -23,7 +23,7 @@ export const Authorization = async (req, res, next) => {
         // Check if token is not valid
         if(!decodedToken)
         {
-            req.status(400).send("Bad Request");
+            res.status(401).end("Unauthorized Request");
         }
 
         // If token is valid, get user based on decoded token data
@@ -32,7 +32,7 @@ export const Authorization = async (req, res, next) => {
         // Check if user exists, if not send bad request
         if(!user)
         {
-            req.status(400).send("Bad Request");
+            res.status(401).end("Unauthorized Request");
         }
 
         req.userId = user._id;
@@ -41,6 +41,6 @@ export const Authorization = async (req, res, next) => {
     }
     catch(err)
     {
-        res.status(500).send("Internal Server Error");
+        res.status(500).end("Internal Server Error");
     }
 }

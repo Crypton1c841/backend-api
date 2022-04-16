@@ -33,6 +33,6 @@ DeleteTaskRoute.delete('/:collectionId/task/:taskId', Authorization, async (req,
     }
     catch(err)
     {
-        res.status(500).send("Internal Server Error!");
+        res.status(500).end("Internal Server Error!");
     }
 })

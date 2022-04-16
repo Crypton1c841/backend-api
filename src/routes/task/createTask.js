@@ -36,7 +36,7 @@ CreateTaskRoute.post('/create/:collectionId/task', Authorization, async (req, re
     }
     catch(err)
     {
-        res.status(500).send("Internal Server error")
+        res.status(500).end("Internal Server error")
     }
     
 })
