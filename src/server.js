@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { UserSignInRoute } from './routes/auth/userSignin.js';
 import { UserSignOutRoute } from './routes/auth/userSignout.js';
 import { UserSignUpRoute } from './routes/auth/userSignup.js';
@@ -15,6 +16,7 @@ import { UpdateTaskRoute } from './routes/task/updateTask.js';
 export const ExpressServer = () => {
 
     const server = express();
+    server.use(cors());
     server.use(express.json());
 
     // Routes

@@ -1,7 +1,7 @@
 import { ConnectDB } from "./db.js";
 import { ExpressServer } from "./server.js";
 
-const PORT = 3000;
+const PORT = 4000;
 export const JWT_SECRET = "skduncfh847gf83w47fhw8cw994";
 
 

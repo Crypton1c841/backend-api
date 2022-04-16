@@ -16,7 +16,7 @@ UserSignUpRoute.post('/signup', async (req, res) => {
             password,
             firstName,
             lastName
-        }).save()
+        }).save();
 
         if(!user)
         {
