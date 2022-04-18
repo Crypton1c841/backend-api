@@ -17,7 +17,7 @@ CreateCollectionRoute.post('/create/collection', Authorization, async (req, res)
 
         if(!collection)
         {
-            throw new Error("Erro saving");
+            return res.status(500).end("Internal Server Error");
         }
 
         // If token is valid, get user based on decoded token data
@@ -26,7 +26,7 @@ CreateCollectionRoute.post('/create/collection', Authorization, async (req, res)
         // Check if user exists, if not send bad request
         if(!user)
         {
-            throw new Error("Erro saving");
+            return res.status(500).end("Internal Server Error");
         }
 
         // if collection created successfully, assign collection id to user collections field

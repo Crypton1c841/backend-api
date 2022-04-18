@@ -18,7 +18,7 @@ GetTasksRoute.get('/:collectionId/tasks', Authorization, async (req, res) =>{
             res.status(404).send("Collection does not Exists");
         }
 
-        const tasks = await TaskModel.find({ collectionId: collection._id });
+        const tasks = await TaskModel.find({ collectionId: collection._id }).sort({ 'updatedAt': -1 });
 
         if(!tasks)
         {

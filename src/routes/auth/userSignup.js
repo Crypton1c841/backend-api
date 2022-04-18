@@ -20,7 +20,7 @@ UserSignUpRoute.post('/signup', async (req, res) => {
 
         if(!user)
         {
-            throw new Error("Internal Server Error")
+            return res.status(500).end("Internal Server Error");
         }
         
         // Generate Token
@@ -32,7 +32,7 @@ UserSignUpRoute.post('/signup', async (req, res) => {
 
         if(!session)
         {
-            throw new Error("Internal Server Error")
+            return res.status(500).end("Internal Server Error");
         }
 
         let response  = {

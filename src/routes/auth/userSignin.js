@@ -19,14 +19,14 @@ UserSignInRoute.post('/signin', async (req, res) => {
         // Compare password with bcrypt
         if(!user)
         {
-            throw new Error("User Not Found");
+            return res.status(404).end("Invalid Credentials");
         }
 
         const isMatch = await bcryptjs.compare(password, user.password);
 
         if(!isMatch)
         {
-            throw new Error('Invalid Credentials');
+            return res.status(404).end("Invalid Credentials");
         }
 
         // Generate Token

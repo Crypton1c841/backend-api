@@ -18,7 +18,7 @@ UserSignOutRoute.post('/signout', Authorization, async (req, res) => {
 
         if(!session)
         {
-            res.status(400).send("Bad Request!")
+            return res.status(400).end("Bad Request");
         }
 
         await session.remove();

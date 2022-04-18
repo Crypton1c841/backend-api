@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId
         }
     ],
-});
+}, { timestamps: true });
 
 
 // Moongoose Middleware to Hash password before saving to collection

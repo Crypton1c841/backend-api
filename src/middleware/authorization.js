@@ -14,7 +14,7 @@ export const Authorization = async (req, res, next) => {
 
         if(!session)
         {
-            res.status(401).end("Unauthorized Request");
+            return res.status(401).end("Unauthorized Request");
         }
             
         // Verify token
@@ -23,7 +23,7 @@ export const Authorization = async (req, res, next) => {
         // Check if token is not valid
         if(!decodedToken)
         {
-            res.status(401).end("Unauthorized Request");
+            return res.status(401).end("Unauthorized Request");
         }
 
         // If token is valid, get user based on decoded token data
@@ -32,7 +32,7 @@ export const Authorization = async (req, res, next) => {
         // Check if user exists, if not send bad request
         if(!user)
         {
-            res.status(401).end("Unauthorized Request");
+            return res.status(401).end("Unauthorized Request");
         }
 
         req.userId = user._id;

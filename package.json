@@ -4,7 +4,7 @@
   "description": "Backend-API",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/app.js"
+    "start": "nodemon src/app.js"
   },
   "author": "Sumanth",
   "license": "ISC",
@@ -13,7 +13,9 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.10"
+    "mongoose": "^6.2.10",
+    "netlify-lambda": "^2.0.15",
+    "serverless-http": "^3.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

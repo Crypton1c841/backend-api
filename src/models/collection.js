@@ -16,6 +16,6 @@ const CollectionSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId
         }
     ]
-});
+}, { timestamps: true });
 
 export const CollectionModel = mongoose.model('Collection', CollectionSchema);
