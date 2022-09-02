@@ -15,7 +15,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.10",
     "netlify-lambda": "^2.0.15",
-    "serverless-http": "^3.0.1"
+    "serverless-http": "^3.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
